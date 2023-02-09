@@ -1,0 +1,62 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.nahuel-server1" [label = "aws_instance.nahuel-server1", shape = "box"]
+		"[root] aws_internet_gateway.gw" [label = "aws_internet_gateway.gw", shape = "box"]
+		"[root] aws_key_pair.key-class-1" [label = "aws_key_pair.key-class-1", shape = "box"]
+		"[root] aws_key_pair.key-class-2" [label = "aws_key_pair.key-class-2", shape = "box"]
+		"[root] aws_route_table.r" [label = "aws_route_table.r", shape = "box"]
+		"[root] aws_route_table_association.table_subnet1" [label = "aws_route_table_association.table_subnet1", shape = "box"]
+		"[root] aws_route_table_association.table_subnet2" [label = "aws_route_table_association.table_subnet2", shape = "box"]
+		"[root] aws_route_table_association.table_subnet3" [label = "aws_route_table_association.table_subnet3", shape = "box"]
+		"[root] aws_security_group.sg-1" [label = "aws_security_group.sg-1", shape = "box"]
+		"[root] aws_security_group.sg-2" [label = "aws_security_group.sg-2", shape = "box"]
+		"[root] aws_subnet.subnet1" [label = "aws_subnet.subnet1", shape = "box"]
+		"[root] aws_subnet.subnet2" [label = "aws_subnet.subnet2", shape = "box"]
+		"[root] aws_subnet.subnet3" [label = "aws_subnet.subnet3", shape = "box"]
+		"[root] aws_vpc.nahuel_tf" [label = "aws_vpc.nahuel_tf", shape = "box"]
+		"[root] provider.aws" [label = "provider.aws", shape = "diamond"]
+		"[root] var.ami_id" [label = "var.ami_id", shape = "note"]
+		"[root] var.region" [label = "var.region", shape = "note"]
+		"[root] var.subnet1_private_ip" [label = "var.subnet1_private_ip", shape = "note"]
+		"[root] var.vpc_cidr" [label = "var.vpc_cidr", shape = "note"]
+		"[root] aws_instance.nahuel-server1" -> "[root] aws_key_pair.key-class-1"
+		"[root] aws_instance.nahuel-server1" -> "[root] aws_security_group.sg-1"
+		"[root] aws_instance.nahuel-server1" -> "[root] aws_security_group.sg-2"
+		"[root] aws_instance.nahuel-server1" -> "[root] aws_subnet.subnet1"
+		"[root] aws_instance.nahuel-server1" -> "[root] var.ami_id"
+		"[root] aws_instance.nahuel-server1" -> "[root] var.subnet1_private_ip"
+		"[root] aws_internet_gateway.gw" -> "[root] aws_vpc.nahuel_tf"
+		"[root] aws_key_pair.key-class-1" -> "[root] provider.aws"
+		"[root] aws_key_pair.key-class-2" -> "[root] provider.aws"
+		"[root] aws_route_table.r" -> "[root] aws_internet_gateway.gw"
+		"[root] aws_route_table_association.table_subnet1" -> "[root] aws_route_table.r"
+		"[root] aws_route_table_association.table_subnet1" -> "[root] aws_subnet.subnet1"
+		"[root] aws_route_table_association.table_subnet2" -> "[root] aws_route_table.r"
+		"[root] aws_route_table_association.table_subnet2" -> "[root] aws_subnet.subnet2"
+		"[root] aws_route_table_association.table_subnet3" -> "[root] aws_route_table.r"
+		"[root] aws_route_table_association.table_subnet3" -> "[root] aws_subnet.subnet3"
+		"[root] aws_security_group.sg-1" -> "[root] aws_vpc.nahuel_tf"
+		"[root] aws_security_group.sg-2" -> "[root] aws_vpc.nahuel_tf"
+		"[root] aws_subnet.subnet1" -> "[root] aws_vpc.nahuel_tf"
+		"[root] aws_subnet.subnet2" -> "[root] aws_vpc.nahuel_tf"
+		"[root] aws_subnet.subnet3" -> "[root] aws_vpc.nahuel_tf"
+		"[root] aws_vpc.nahuel_tf" -> "[root] provider.aws"
+		"[root] aws_vpc.nahuel_tf" -> "[root] var.vpc_cidr"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_instance.nahuel-server1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_key_pair.key-class-2"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.table_subnet1"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.table_subnet2"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.table_subnet3"
+		"[root] provider.aws (close)" -> "[root] aws_instance.nahuel-server1"
+		"[root] provider.aws (close)" -> "[root] aws_key_pair.key-class-2"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.table_subnet1"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.table_subnet2"
+		"[root] provider.aws (close)" -> "[root] aws_route_table_association.table_subnet3"
+		"[root] provider.aws" -> "[root] var.region"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider.aws (close)"
+	}
+}
+

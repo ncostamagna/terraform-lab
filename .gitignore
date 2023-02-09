@@ -1,0 +1,10 @@
+*/*/.terraform
+*/*/*.pem
+*/*/*.pem.pub
+*/*/*.tfstate
+*/*/*.tfstate.backup
+*/*/*/.terraform
+*/*/*/*.pem
+*/*/*/*.pem.pub
+*/*/*/*.tfstate
+*/*/*/*.tfstate.backup

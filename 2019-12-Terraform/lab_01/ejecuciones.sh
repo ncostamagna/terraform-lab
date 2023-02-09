@@ -1,0 +1,1 @@
+ssh -i class_key.pem 172.18.23.93
