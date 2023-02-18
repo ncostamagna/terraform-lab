@@ -8,3 +8,12 @@
 */*/*/*.pem.pub
 */*/*/*.tfstate
 */*/*/*.tfstate.backup
+*/*/*/*/*.tfstate
+*/*/*/*/*.tfstate.backup
+*/*/*/*/*/.terraform
+*/*/*/*/*/*.tfstate
+*/*/*/*/*/*.tfstate.backup
+*/*/*/*/*/*/.terraform
+.terraform
+*.tfstate
+*.tfstate.backup
