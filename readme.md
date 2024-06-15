@@ -1,3 +1,7 @@
+# Repositories
+
+- hashiCorp-certified: go to terraform/Hands-On Labs
+
 # What is Infrastructure as Code?
 
 ## What is Infrastructure as Code
@@ -33,7 +37,11 @@ There are likely other tools available, but they are not as popular as the ones 
 # Commands
 
 ```sh
-terraform apply # aplicar cambios
+terraform init # initialize our project
+terraform validate [file] # validation in the file, syntax
+terraform fmt # rewrite the files with the right format
+terraform plan # we can see the changes
+terraform apply # appling our changes on AWS or wherever
 terraform apply -auto-approve # aplicar cambios y setear yes
 
 terraform destroy # eliminar todo
