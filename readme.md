@@ -34,6 +34,34 @@ There are likely other tools available, but they are not as popular as the ones 
 - AWS CloudFormation - aws.amazon.com/cloudformation
 - Azure Resource Manager (ARM) - azure.microsoft.com
 
+# Terraform Goals
+
+## Goals
+
+- Unify the view of resources using infrastructure as code
+- Support the modern data center (IaaS, PaaS, SaaS)
+- Expose a way for individuals and teams to safely and predictably change infrastructure
+- Provide a workflow that is technology agnostic
+- Manage anything with an API
+
+## Benefits
+
+- Provides a high-level abstraction of infrastructure (IaC)
+- Allows for composition and combination
+- Supports parallel management of resources (graph, fast)
+- Separates planning from execution (dry-run)
+
+# Terraform State
+In order to properly and correctly manage your infrastructure resources, Terraform stores the state of your managed infrastructure. Terraform uses this state on each execution to plan and make changes to your infrastructure. This state must be stored and maintained on each execution so future operations can perform correctly.
+
+## Benefits of State
+During execution, Terraform will examine the state of the currently running infrastructure, determine what differences exist between the current state and the revised desired state, and indicate the necessary changes that must be applied. When approved to proceed, only the necessary changes will be applied, leaving existing, valid infrastructure untouched.
+
+- Task 1: Show Current State
+- Task 2: Update your Configuration
+- Task 3: Plan and Execute Changes
+- Task 4: Show New State
+
 # Commands
 
 ```sh
@@ -44,6 +72,7 @@ terraform plan # we can see the changes
 terraform apply # appling our changes on AWS or wherever
 terraform apply -auto-approve # aplicar cambios y setear yes
 
+terraform show # all resources
 terraform destroy # eliminar todo
 
 ```
