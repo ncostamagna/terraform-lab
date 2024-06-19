@@ -167,6 +167,26 @@ Providers required by state:
 
 ```
 
+# Data Source
+
+A data source is accessed via a special kind of resource known as a data resource, declared using a data block:
+```r
+data "aws_ami" "example" {
+  most_recent = true
+
+  owners = ["self"]
+  tags = {
+    Name   = "app-server"
+    Tested = "true"
+  }
+}
+```
+A data block requests that Terraform read from a given data source ("aws_ami") and export the result under the given local name ("example"). The name is used to refer to this resource from elsewhere in the same Terraform module, but has no significance outside of the scope of a module.
+<br />
+The data source and name together serve as an identifier for a given resource and so must be unique within a module.
+<br />
+https://developer.hashicorp.com/terraform/language/data-sources
+
 # Modules
 
 Create logical abstraction, the modules can be reutilizable, we can use specific modules in terraform registry, for example vpc
