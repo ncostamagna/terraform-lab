@@ -75,6 +75,8 @@ terraform apply -auto-approve # aplicar cambios y setear yes
 terraform show # all resources
 terraform destroy # eliminar todo
 
+terraform output # we can see the output values
+
 ```
 
 # HashiCorp
