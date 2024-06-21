@@ -77,6 +77,15 @@ terraform destroy # eliminar todo
 
 terraform output # we can see the output values
 
+## taint is deprecated
+terraform taint # manually mark a resource for recretion
+terraform taint aws_instance.web_server # we need to run apply after it
+terraform untaint # reverte taint
+
+## instead of taint, we can use -replace
+terraform apply -replace
+terraform apply -replace="aws_instance.web_server"
+
 ```
 
 # HashiCorp
@@ -188,6 +197,30 @@ A data block requests that Terraform read from a given data source ("aws_ami") a
 The data source and name together serve as an identifier for a given resource and so must be unique within a module.
 <br />
 https://developer.hashicorp.com/terraform/language/data-sources
+
+# Import
+we can import resources into AWS, that were not created with Terraform.<br />
+For example, if we have some EC2 on AWS (not by terraform)<br />
+```r
+# we need to define the region
+provider "aws" {
+  region = "us-west-2"
+}
+
+# we need to define the block
+resource "aws_instance" "aws_linux" {}
+```
+we run the follow command
+```r
+terraform import <resource.name> <unique_identifier>
+terraform import aws_instance.aws_linux i-0bfff5070c5fb87b6
+```
+
+if we don't have some requirment argument such as ami or arn, we can run *state show*
+
+```r
+terraform state show
+```
 
 # Modules
 
