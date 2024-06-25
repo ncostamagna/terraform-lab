@@ -439,3 +439,5 @@ terraform init
 
 We can use different environment, for example, we can use stage, qa, prod and in each env create our modules,
 each module will import the resource from resoruces (in this case in modules folder)
+<br />
+For more information, you can see in `/hashiCorp-certified/terraform/Hands-On Labs/Section 06 - Interact with Terraform Modules`
