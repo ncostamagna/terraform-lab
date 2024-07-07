@@ -74,6 +74,7 @@ terraform apply -auto-approve # aplicar cambios y setear yes
 
 terraform show # all resources
 terraform destroy # eliminar todo
+terraform plan -destroy # see resources before it will be destroyed
 
 terraform output # we can see the output values
 
