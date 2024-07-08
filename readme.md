@@ -438,7 +438,10 @@ terraform init
 
 ```
 
-We can use different environment, for example, we can use stage, qa, prod and in each env create our modules,
-each module will import the resource from resoruces (in this case in modules folder)
+We can use different environment, for example, we can use stage, qa, prod and in each env, we create our modules.
+Each module will import the resource from resoruces (in this case, from the modules folder)
 <br />
 For more information, you can see in `/hashiCorp-certified/terraform/Hands-On Labs/Section 06 - Interact with Terraform Modules`
+
+# State
+Terraform stores and operates on the state of your managed infrastructure. By default Terraform uses a local backend, where state information is stored and acted upon locally within the working directory in a local file named terraform.tfstate
