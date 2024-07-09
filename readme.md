@@ -445,3 +445,6 @@ For more information, you can see in `/hashiCorp-certified/terraform/Hands-On La
 
 # State
 Terraform stores and operates on the state of your managed infrastructure. By default Terraform uses a local backend, where state information is stored and acted upon locally within the working directory in a local file named terraform.tfstate
+
+## Backend with S3 and Dynamo
+https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2008%20-%20Implement%20and%20Maintain%20State/04%20-%20Terraform_State_Backend_Storage.md
