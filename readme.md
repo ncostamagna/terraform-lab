@@ -454,3 +454,8 @@ https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414
 
 ## State Migration
 https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2008%20-%20Implement%20and%20Maintain%20State/06%20-%20Terraform_State_Migration.md
+
+# BackEnd
+
+## Dynamic values in BackEnd confi
+https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2008%20-%20Implement%20and%20Maintain%20State/08%20-%20Terraform_Backend_Configuration.md
