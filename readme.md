@@ -459,3 +459,7 @@ https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414
 
 ## Dynamic values in BackEnd confi
 https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2008%20-%20Implement%20and%20Maintain%20State/08%20-%20Terraform_Backend_Configuration.md
+
+# Sensitive data
+
+https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2009%20-%20Read%20Generate%20and%20Modify%20Configuration/05%20-%20Secure_Secrets_in_Terraform_Code.md
