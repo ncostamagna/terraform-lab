@@ -456,6 +456,12 @@ https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414
 https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2008%20-%20Implement%20and%20Maintain%20State/05%20-%20Terraform_Remote_State_Enhanced_Backend.md
 
 ## State Migration
+
+We can migrate our state with this command:
+```sh
+terraform init -migrate-state
+```
+
 https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2008%20-%20Implement%20and%20Maintain%20State/06%20-%20Terraform_State_Migration.md
 
 # BackEnd
@@ -1111,3 +1117,203 @@ resource "aws_security_group" "main" {
 ## Best Practices
 
 Overuse of dynamic blocks can make configuration hard to read and maintain, so it is recommend to use them only when you need to hide details in order to build a clean user interface for a re-usable module. Always write nested blocks out literally where possible.
+
+# Lab: Terraform Cloud
+
+## Intro
+(for more information about Terraform Cloud you can see: https://github.com/btkrausen/hashicorp/tree/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2010%20-%20Understand%20Terraform%20Cloud%20Capabilities
+)
+
+Terraform Cloud is HashiCorp’s managed service offering that eliminates the need for unnecessary tooling and documentation to use Terraform in production. Terraforn Cloud helps you to provision infrastructure securely and reliably in the cloud with free remote state storage. Teraform Cloud and it's self hosted counterpart Terraform Enterprise offer Workspaces, Private Module Registry, Team Goverenance along with Policy as Code (Sentinel) as a few of it's benefits.
+
+- Task 1: Sign up for Terraform Cloud
+- Task 2: Clone Getting Started Code Repository
+- Task 3: Run setup script to create TFC Organization for course
+
+### Task 1: Sign up for Terraform Cloud
+
+In this lab you will sign up and get started with Terraform Cloud utilize the [Terraform Cloud](https://app.terraform.io/).
+
+1. Navigate to [the sign up page](https://app.terraform.io/signup?utm_source=banner&utm_campaign=intro_tf_cloud_remote) and create an account for Terraform Cloud. If you already have a TFC account
+
+1. Perform a `terraform login` from your workstation
+
+```bash
+Terraform will request an API token for app.terraform.io using your browser.
+
+If login is successful, Terraform will store the token in plain text in
+the following file for use by subsequent commands:
+    /home/student/.terraform.d/credentials.tfrc.json
+
+Do you want to proceed?
+  Only 'yes' will be accepted to confirm.
+
+  Enter a value:
+```
+
+2. Answer `yes` at the prompt and generate a TFC user token by following the URL provided and copy-paste it into the prompt.
+
+```bash
+---------------------------------------------------------------------------------
+
+Open the following URL to access the tokens page for app.terraform.io:
+    https://app.terraform.io/app/settings/tokens?source=terraform-login
+
+
+---------------------------------------------------------------------------------
+```
+
+1. If the token was entered succesfully you should see the following:
+
+```bash
+
+Retrieved token for user tfcuser
+
+
+---------------------------------------------------------------------------------
+
+                                          -
+                                          -----                           -
+                                          ---------                      --
+                                          ---------  -                -----
+                                           ---------  ------        -------
+                                             -------  ---------  ----------
+                                                ----  ---------- ----------
+                                                  --  ---------- ----------
+   Welcome to Terraform Cloud!                     -  ---------- -------
+                                                      ---  ----- ---
+   Documentation: terraform.io/docs/cloud             --------   -
+                                                      ----------
+                                                      ----------
+                                                       ---------
+                                                           -----
+                                                               -
+
+
+   New to TFC? Follow these steps to instantly apply an example configuration:
+
+   $ git clone https://github.com/hashicorp/tfc-getting-started.git
+   $ cd tfc-getting-started
+   $ scripts/setup.sh
+
+```
+
+### Task 2: Clone Getting Started Code Repository
+
+We will utilize a sample code repo to get started with Terraform Cloud. You can clone this sample repo using the following conmmands:
+
+```sh
+git clone https://github.com/hashicorp/tfc-getting-started.git
+cd tfc-getting-started
+```
+
+### Task 3: Run setup script to create TFC Organization for course
+
+This startup script within the sample code repo automatically handles all the setup required to start using Terraform with Terraform Cloud. The included configuration provisions some mock infrastructure to a fictitious cloud provider called "Fake Web Services" using the [`fakewebservices`](https://registry.terraform.io/providers/hashicorp/fakewebservices/latest) provider.
+
+```
+./scripts/setup.sh
+```
+
+Follow the prompts provided by the script which will create a Terraform organization along with mock infrastructure.
+
+```bash
+--------------------------------------------------------------------------
+Getting Started with Terraform Cloud
+-------------------------------------------------------------------------
+
+Terraform Cloud offers secure, easy-to-use remote state management and allows
+you to run Terraform remotely in a controlled environment. Terraform Cloud runs
+can be performed on demand or triggered automatically by various events.
+
+This script will set up everything you need to get started. You'll be
+applying some example infrastructure - for free - in less than a minute.
+
+First, we'll do some setup and configure Terraform to use Terraform Cloud.
+
+Press any key to continue (ctrl-c to quit):
+```
+
+```
+You did it! You just provisioned infrastructure with Terraform Cloud! The organization we created here has a 30-day free trial of the Team & Governance tier features.
+```
+
+Navigate to your workspace, along with mock infrastruture that you just deployed:
+
+- Terraform Cloud: https://app.terraform.io/
+
+- Mock infrastructure you just provisioned: https://app.terraform.io/fake-web-services
+
+## Sentinel Policy
+
+(more information in: https://github.com/btkrausen/hashicorp/blob/7562e7e572c7ea33e977477002dc02430414f008/terraform/Hands-On%20Labs/Section%2010%20-%20Understand%20Terraform%20Cloud%20Capabilities/07%20-%20Terraform_Cloud_Sentinel_Policy.md)
+
+Sentinel is a policy-as-code framework used by Terraform to define and enforce rules that govern the behavior of your infrastructure as code. Sentinel policies allow you to set conditions that your Terraform configurations must meet before they are applied. This ensures that your infrastructure changes are compliant with organizational and regulatory requirements.
+
+### Key Features of Sentinel Policy:
+
+1.  **Policy as Code:** Sentinel policies are written in a declarative language that allows you to define rules and conditions.
+    
+2.  **Enforcement Levels:** Policies can be enforced at different levels, such as advisory (warnings), soft mandatory (block with the option to override), and hard mandatory (strictly enforced).
+    
+3.  **Integration with Terraform:** Sentinel integrates seamlessly with Terraform Cloud and Terraform Enterprise, enabling policy enforcement as part of the Terraform workflow.
+    
+
+### Example of a Sentinel Policy
+
+Here is a simple example of a Sentinel policy that ensures no AWS S3 bucket is publicly accessible:
+
+#### Policy: Ensure S3 Buckets are Not Publicly Accessible
+
+```r
+hclCopy code# Define the main rule
+main = rule {
+  # Access the AWS S3 bucket resources in the Terraform configuration
+  all aws_s3_bucket as _, bucket {
+    # Ensure that bucket ACL is not set to 'public-read' or 'public-read-write'
+    bucket.acl is not "public-read" and bucket.acl is not "public-read-write"
+  }
+}
+
+```
+
+### Explanation of the Example
+
+1.  **main = rule {...}:** Defines the main rule that will be evaluated.
+    
+2.  **all aws\_s3\_bucket as \_, bucket {...}:** Iterates over all AWS S3 bucket resources defined in the Terraform configuration.
+    
+3.  **bucket.acl is not "public-read" and bucket.acl is not "public-read-write":** Checks the ACL (Access Control List) of each bucket to ensure it is not set to "public-read" or "public-read-write," which would make the bucket publicly accessible.
+    
+
+### Steps to Implement Sentinel Policy in Terraform
+
+1.  **Write the Policy:** Create a Sentinel policy file (e.g., ensure\_no\_public\_s3.sentinel) with the desired rules.
+    
+2.  **Upload the Policy:** Upload the policy file to Terraform Cloud or Terraform Enterprise.
+    
+3.  **Attach the Policy to a Workspace:** Attach the policy to the appropriate workspace(s) in Terraform Cloud or Terraform Enterprise.
+    
+4.  **Enforce the Policy:** Configure the enforcement level (advisory, soft mandatory, or hard mandatory) for the policy.
+    
+5.  **Run Terraform Plan/Apply:** When you run terraform plan or terraform apply, the policy will be evaluated, and the plan will only proceed if it complies with the policy.
+    
+
+### Example Configuration in Terraform Cloud
+
+```r
+hclCopy code# Define a workspace in Terraform Cloud
+workspace "example-workspace" {
+  description = "Workspace for example policy"
+}
+
+
+# Attach the Sentinel policy to the workspace
+sentinel_policy "ensure_no_public_s3" {
+  policy = file("ensure_no_public_s3.sentinel")
+  enforcement_level = "hard-mandatory"
+}
+
+```
+
+This setup ensures that any changes applied to the "example-workspace" will be checked against the "ensure\_no\_public\_s3" policy, and the changes will be blocked if any S3 bucket is found to be publicly accessible.
